@@ -1,0 +1,28 @@
+{
+  "name": "xiaobo.unity.toolkit.helper",
+  "displayName": "Xiaobo.Toolkit.Helper",
+  "version": "0.0.0",
+  "description": "Helper module",
+  "keywords": [    
+    "xiaobo",
+    "helper",
+    "debug",
+    "utilities"
+  ],
+  "homepage": "https://github.com/agalloch21/unity-toolkit-helper",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:agalloch21/unity-toolkit-helper.git"
+  },
+  "samples": [
+        {
+            "displayName": "Sample",
+            "description": "",
+            "path": "Samples"
+        }
+      ],
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
