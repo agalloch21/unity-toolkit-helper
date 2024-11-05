@@ -217,6 +217,8 @@ namespace Xiaobo.UnityToolkit.Helper
             buttonSlider.onClick.AddListener(delegate { ShowPanel(HelperItemType.Slider); });            
             buttonSpaceInfo.onClick.AddListener(delegate { ShowPanel(HelperItemType.SpaceInfo); });
 
+            buttonTogglePanel.onClick.AddListener(ToggleDebugPanel);
+
             //
             if (FindFirstObjectByType<EventSystem>() == null)
             {
