@@ -11,17 +11,13 @@ namespace Xiaobo.UnityToolkit.Helper
 {
     public class HelperModule : MonoBehaviour
     {
+        [SerializeField] bool enabledByDefault = false;
+        bool helperEnabled = false;
+        public bool HelperEnabled{ get => helperEnabled; }
 
-        [SerializeField] bool isVisible = false;
-        public bool Visible
-        {
-            get => isVisible;
-            set
-            {
-                isVisible = value;
-                SetDebugPanelVisible(value);
-            }
-        }
+        [SerializeField] bool openByDefault = false;
+        bool isPanelOpen = false;
+        public bool IsPanelOpen { get => isPanelOpen; }
 
         enum HelperItemType
         {
@@ -49,6 +45,7 @@ namespace Xiaobo.UnityToolkit.Helper
         Dictionary<string, GameObject> spaceInfoList = new Dictionary<string, GameObject>();
 
         [Header("UI System")]
+        [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private Button buttonTogglePanel;
         [SerializeField] private Transform tabsRoot;
     
@@ -63,17 +60,53 @@ namespace Xiaobo.UnityToolkit.Helper
 
 
         #region public functions
-        public void ToggleDebugPanel()
+        public void EnableDebugPanel()
         {
-            if (enabled == false) return;
-
-            isVisible = !isVisible;
-            SetDebugPanelVisible(isVisible);
+            SetEnableState(true);
         }
 
-        public void SetDebugPanelVisible(bool state)
+        public void DisableDebugPanel()
+        {
+            SetEnableState(false);
+        }
+
+        void SetEnableState(bool state)
+        {
+            if (canvasGroup == null)
+                return;
+
+            canvasGroup.alpha = state ? 1 : 0;
+            canvasGroup.blocksRaycasts = state;
+
+            helperEnabled = state;
+        }
+
+        public void ToggleVisibleState()
         {
             if (enabled == false) return;
+
+            SetVisibleState(!isPanelOpen);
+        }
+
+        public void OpenDebugPanel()
+        {
+            if (enabled == false) return;
+
+            SetVisibleState(true);
+        }
+
+        public void HideDebugPanel()
+        {
+            if (enabled == false) return;
+
+            SetVisibleState(false);
+        }
+
+        void SetVisibleState(bool state)
+        {
+            if (enabled == false) return;
+
+            isPanelOpen = state;
 
             tabsRoot.gameObject.SetActive(state);
             if (state == false)
@@ -196,8 +229,10 @@ namespace Xiaobo.UnityToolkit.Helper
         #region private functions
 
         void Start()
-        {            
-            SetDebugPanelVisible(isVisible);
+        {
+            SetEnableState(enabledByDefault);
+
+            SetVisibleState(openByDefault);
         }
 
         void InitializeUI()
@@ -217,7 +252,7 @@ namespace Xiaobo.UnityToolkit.Helper
             buttonSlider.onClick.AddListener(delegate { ShowPanel(HelperItemType.Slider); });            
             buttonSpaceInfo.onClick.AddListener(delegate { ShowPanel(HelperItemType.SpaceInfo); });
 
-            buttonTogglePanel.onClick.AddListener(ToggleDebugPanel);
+            buttonTogglePanel.onClick.AddListener(ToggleVisibleState);
 
             //
             if (FindFirstObjectByType<EventSystem>() == null)

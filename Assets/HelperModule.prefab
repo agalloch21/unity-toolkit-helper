@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3527325231213256454}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1709,6 +1709,7 @@ GameObject:
   - component: {fileID: 7306330144500290288}
   - component: {fileID: 8391616685193861523}
   - component: {fileID: 6014178684902572970}
+  - component: {fileID: 107407998639188594}
   m_Layer: 0
   m_Name: UICanvas
   m_TagString: Untagged
@@ -1802,6 +1803,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &107407998639188594
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294858261055060833}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5445691970400373873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,13 +2139,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673296b3a7be449dcb44a0516239915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVisible: 0
+  enabledByDefault: 1
+  openByDefault: 1
   contentRootInfo: {fileID: 3809820489941444338}
   prefabInfo: {fileID: 8208002816722975583, guid: 96440ad817e7f453bbef2ce125ef88bc, type: 3}
   contentRootSlider: {fileID: 7031992517703717519}
   prefabSlider: {fileID: 6116592561778318614, guid: 4e0c0fb5fb52d4070b50df3d155d17b8, type: 3}
   contentRootSpaceInfo: {fileID: 6573781306088915691}
   prefabSpaceInfo: {fileID: 8342374433772765540, guid: 817bd0587c6af4b9da8e745c9263af06, type: 3}
+  canvasGroup: {fileID: 107407998639188594}
   buttonTogglePanel: {fileID: 3481481045233994543}
   tabsRoot: {fileID: 5033265825654751545}
 --- !u!1 &6883290451059556974
